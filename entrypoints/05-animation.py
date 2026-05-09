@@ -34,7 +34,12 @@ if __name__ == "__main__":
     renderer = urenderer.renderer.PyplotRenderer(1920, 1080, show=False)
     runtime = urenderer.application.Runtime(renderer, name="05-animation")
 
+    # Desloca para cima
     node = urenderer.node.Node()
+    node.translation = np.array([0, 0, -5], np.float64)
+    node.rotation = np.array([90, 0, 0], np.float64)
+    node.render_data = urenderer.geometry.polygonal_ifs.get_ifs_pyramid()
+    runtime.scene.add_child(node)
     node.callbacks.append(animate_over_time)
 
     # Crie a cena
